@@ -73,11 +73,6 @@
     <section id="card">
         <div class="container-fluid text-center">
             <div id="message"></div>
-            <div id="inputSection" style="display: none;">
-                <h2>Apa Harapanmu di Natal Tahun ini? Tulis dibawah ya :)</h2>
-                <textarea id="userWish" rows="4" cols="50" placeholder="Tulis harapanmu disini..."></textarea><br>
-                <button id="submitWish" class="btn btn-primary">Kirim Harapan</button>
-            </div>
             <div id="thankYouSection">
                 <h2>Apa kamu mau mengucapkan terima kasih padaku?</h2>
                 <button id="yesButton" class="btn btn-success">Ya</button>
@@ -150,7 +145,7 @@
                 // Sembunyikan pesan setelah semua pesan ditampilkan
                 setTimeout(() => {
                     document.getElementById("message").innerText = ""; // Sembunyikan pesan
-                    document.getElementById("inputSection").style.display = 'block'; // Tampilkan input harapan
+                    document.getElementById("thankYouSection").style.display = 'block'; // Tampilkan pertanyaan terima kasih
                 }, 1000); // Tunggu 1 detik sebelum menyembunyikan pesan
             }
         }
@@ -160,30 +155,6 @@
 
         // Display the first message immediately
         changeMessage();
-
-        // Handle wish submission
-        document.getElementById("submitWish").addEventListener("click", function() {
-            const userWish = document.getElementById("userWish").value;
-            if (userWish) {
-                // Kirim harapan ke database (gunakan AJAX untuk menghubungkan ke server)
-                fetch('submit_wish.php', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ wish: userWish })
-                })
-                .then(response => response.json())
-                .then(data => {
-                    console.log(data);
-                    document.getElementById("inputSection").style.display = 'none'; // Sembunyikan input
-                    document.getElementById("thankYouSection").style.display = 'block'; // Tampilkan pertanyaan terima kasih
-                })
-                .catch(error => console.error('Error:', error));
-            } else {
-                alert("Harapan tidak boleh kosong!");
-            }
-        });
 
         // Handle yes/no buttons
         document.getElementById("yesButton").addEventListener("click", function() {
