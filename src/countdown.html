@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countdown to Christmas</title>
+    <link rel="icon" href="../assets/xmas.png">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        #nextButtonContainer {
+            display: none; /* Sembunyikan tombol "Next" awalnya */
+            margin-top: 5px; /* Ubah dari 20px ke 5px untuk mengurangi jarak */
+        }
+        .small-text {
+            font-size: 0.5em; /* Atur ukuran font lebih kecil */
+            margin-top: 10px; /* Jarak atas untuk mempercantik tampilan */
+        }
+    </style>
+</head>
+<body>
+    <section id="countdown" class="text-center" style="margin-top: 100px;">
+        <h1>Countdown to Christmas 2024</h1>
+        <p class="small-text">😁Sek Sabar🤣</p> <!-- Tambahkan kelas small-text di sini -->
+        <p id="counter" style="font-size: 0.8em; margin-top: 20px;"></p>
+        
+        <div id="nextButtonContainer">
+            <button id="nextButton" class="btn btn-primary">Next</button>
+        </div>
+    </section>
+
+    <section id="snowfall">
+        <div class="snowflake"></div> 
+        <div class="snowflake"></div>
+        <div class="snowflake"></div>
+        <div class="snowflake"></div>
+        <div class="snowflake"></div> 
+        <div class="snowflake"></div>
+        <div class="snowflake"></div>
+        <div class="snowflake"></div>
+        <div class="snowflake"></div> 
+        <div class="snowflake"></div>
+        <div class="snowflake"></div>
+        <div class="snowflake"></div>
+        <div class="snowflake"></div> 
+        <div class="snowflake"></div>
+        <div class="snowflake"></div>
+        <div class="snowflake"></div>
+        <div class="snowflake"></div> 
+        <div class="snowflake"></div>
+        <div class="snowflake"></div>
+        <div class="snowflake"></div>
+    </section>
+
+    <!-- Audio element for the bell sound -->
+    <audio id="bellSound" src="../assets/lonceng.mp3" preload="auto"></audio>
+
+    <script src="script.js"></script>
+    <script>
+        // Play the bell sound when the page loads
+        window.onload = function() {
+            const bellSound = document.getElementById("bellSound");
+            bellSound.play().catch(function(error) {
+                console.log("Audio playback failed: ", error);
+            });
+        };
+
+        // Tambahkan logika untuk menampilkan tombol "Next" setelah countdown selesai
+        const nextButton = document.getElementById("nextButton");
+        nextButton.addEventListener('click', function() {
+            window.location.href = 'christmascard.html'; // Arahkan ke halaman Christmas Card
+        });
+
+        // Set target date for Christmas 2024 (local time)
+        var countDownDate = new Date(2024, 11, 25, 0, 0, 0).getTime(); // Ubah bulan ke 11 untuk Desember
+
+        var x = setInterval(function () {
+            // Get the current time
+            var now = new Date().getTime();
+
+            // Calculate the time difference
+            var distance = countDownDate - now;
+
+            // Time calculations for days, hours, minutes, and seconds
+            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Display the countdown
+            if (distance >= 0) {
+                document.getElementById("counter").innerHTML =
+                    days + " days " + hours + " hours " + minutes + " minutes " + seconds + " seconds ";
+            } else {
+                // Countdown finished
+                clearInterval(x);
+                document.getElementById("counter").innerHTML = "🎉 Merry Christmas 2024, Suzan! 🎄";
+
+                // Tampilkan tombol "Next" setelah countdown selesai
+                document.getElementById("nextButtonContainer").style.display = 'block';
+            }
+        }, 1000);
+    </script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>MERRY CHRISTMAS SUZAN</title>
+    <link rel="icon" href="assets/xmas.png">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        #wish_heading {
+            padding-top: 400px; /* Jarak atas untuk teks */
+            text-align: center; /* Pusatkan teks */
+        }
+        #nextButtonContainer {
+            display: none; /* Sembunyikan tombol "Next" awalnya */
+            margin-top: 20px; /* Jarak atas untuk tombol */
+        }
+    </style>
+</head>
+
+<body>
+    <section id="snowfall">
+        <div class="snowflake"></div> 
+        <div class="snowflake"></div>
+        <div class="snowflake"></div>
+        <div class="snowflake"></div>
+        <div class="snowflake"></div>
+        <div class="snowflake"></div>
+        <div class="snowflake"></div>
+        <div class="snowflake"></div>
+        <div class="snowflake"></div>
+        <div class="snowflake"></div>
+        <div class="snowflake"></div>
+        <div class="snowflake"></div>
+    </section>
+
+    <section id="wish_heading">
+        <div>
+            <h2 id="wish" class="text-center">THIS WEBSITE IS</h2> 
+            <h3 id="wish2" class="text-center">SPECIAL FOR SUZAN</h3>
+            
+            <div id="nextButtonContainer">
+                <button id="nextButton" class="btn btn-primary">Next</button>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Tampilkan tombol "Next" setelah 3 detik
+        setTimeout(function() {
+            document.getElementById('nextButtonContainer').style.display = 'block';
+        }, 3000);
+
+        document.getElementById('nextButton').addEventListener('click', function() {
+            window.location.href = 'src/countdown.html'; // Arahkan ke halaman countdown
+        });
+    </script>
+</body>
+</html>

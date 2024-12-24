@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Christmas Card</title>
+    <link rel="icon" href="../assets/xmas.png">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            text-align: center;
+            padding: 50px;
+            overflow: hidden; /* Sembunyikan overflow untuk animasi */
+        }
+        #message {
+            font-size: 36px; /* Ukuran font */
+            margin-top: 20px;
+            font-weight: normal; /* Ketebalan normal */
+        }
+        #card {
+            margin-top: 100px;
+        }
+        #thankYouSection {
+            display: none; /* Sembunyikan bagian ini awalnya */
+        }
+        #sadImage {
+            display: none; /* Sembunyikan gambar sedih secara default */
+            max-width: 50%; /* Atur lebar maksimum gambar */
+            height: auto; /* Atur tinggi otomatis untuk menjaga rasio aspek */
+            margin-top: 20px; /* Margin atas untuk jarak */
+            display: block; /* Tampilkan gambar sebagai block untuk memusatkan */
+            margin-left: auto; /* Pusatkan gambar */
+            margin-right: auto; /* Pusatkan gambar */
+        }
+
+        /* Animasi kereta */
+        .train {
+            position: absolute;
+            bottom: 0;
+            width: 100px; /* Atur lebar kereta */
+            height: auto;
+        }
+
+        @keyframes moveTrain {
+            0% {
+                transform: translateX(-100%); /* Mulai dari luar kiri */
+            }
+            100% {
+                transform: translateX(100vw); /* Berhenti di luar kanan (100% dari viewport width) */
+            }
+        }
+
+        .sinterclass {
+            animation: moveTrain 10s linear infinite; /* Durasi dan pengulangan animasi */
+        }
+
+        .christmas {
+            animation: moveTrain 10s linear infinite; /* Durasi dan pengulangan animasi */
+            animation-delay: 5s; /* Tunda animasi kereta Natal */
+        }
+    </style>
+</head>
+
+<body>
+    <audio id="merryAudio" src="../assets/merry.mp3" preload="auto" loop></audio>
+
+    <section id="card">
+        <div class="container-fluid text-center">
+            <div id="message"></div>
+            <div id="inputSection" style="display: none;">
+                <h2>Apa Harapanmu di Natal Tahun ini? Tulis dibawah ya :)</h2>
+                <textarea id="userWish" rows="4" cols="50" placeholder="Tulis harapanmu disini..."></textarea><br>
+                <button id="submitWish" class="btn btn-primary">Kirim Harapan</button>
+            </div>
+            <div id="thankYouSection">
+                <h2>Apa kamu mau mengucapkan terima kasih padaku?</h2>
+                <button id="yesButton" class="btn btn-success">Ya</button>
+                <button id="noButton" class="btn btn-danger">Tidak</button>
+            </div>
+            <h2 id="sadText" style="display:none;">Yaudah deh, gpp</h2> <!-- Teks di atas gambar -->
+            <img id="sadImage" src="../assets/sedih.gif" alt="Sedih" style="display:none;"> <!-- Ganti jpg ke gif -->
+        </div>
+    </section>
+
+    <section id="snowfall">
+        <div class="snowflake"></div> 
+        <div class="snowflake"></div>
+        <div class="snowflake"></div>
+        <div class="snowflake"></div>
+        <div class="snowflake"></div>
+        <div class="snowflake"></div>
+        <div class="snowflake"></div>
+        <div class="snowflake"></div>
+        <div class="snowflake"></div>
+        <div class="snowflake"></div>
+        <div class="snowflake"></div>
+        <div class="snowflake"></div>
+        <div class="snowflake"></div>
+        <div class="snowflake"></div>
+        <div class="snowflake"></div>
+        <div class="snowflake"></div>
+    </section>
+
+    <!-- Kereta Sinterklas dan Kereta Natal -->
+    <img src="../assets/sinterclass_train.png" class="train sinterclass" alt="Kereta Sinterklas" style="left: -100px;"> <!-- Mulai dari luar kiri -->
+    <img src="../assets/christmas_train.png" class="train christmas" alt="Kereta Natal" style="left: -100px;"> <!-- Mulai dari luar kiri -->
+
+    <script>
+        // Memutar audio saat halaman dimuat
+        const audio = document.getElementById('merryAudio');
+        audio.play();
+
+        const messages = [
+            "Hallo, Suzan",
+            "Selamat Natal",
+            "& Tahun Baru",
+            "Semoga Natal ini membawa kebahagiaan dan kedamaian dalam hidupmu!",
+            "Di momen spesial ini, aku ingin mengucapkan Selamat Natal!",
+            "Semoga hari-harimu dipenuhi dengan cinta dan keceriaan!",
+            "Semoga semangat Natal mengisi hatimu dengan sukacita dan harapan!",
+            "Semoga setiap momen di musim liburan ini",
+            "Membawa kebahagiaan dan kehangatan bagi dirimu dan keluargamu",
+            "Saya berharap kamu di kelilingi orang-orang yang mencintaimu",
+            "Semoga Natal ini menjadi waktu yang indah untukmu",
+            "Dan semoga Natal ini membawa banyak kenangan indah buat kamu",
+            "I wish You All the best",
+            "Sorry, cuma bisa kasi ucapan lewat Web sederhana ini wkwkwk🤣🙏",
+            "Aku hanya ingin berpesan",
+            "Selalu jaga kesehatan kamu",
+            "🗿See you again on the badminton court🏸",
+            "I see it again",
+            "🎉Merry Chrismast and Happy New Year🎄",
+            "🤘SUZAN MEGA VIRGINIA TJAHJONO❤️"
+        ];
+
+        let currentIndex = 0;
+
+        function changeMessage() {
+            document.getElementById("message").innerText = messages[currentIndex];
+            currentIndex++;
+            
+            if (currentIndex >= messages.length) {
+                clearInterval(messageInterval);
+                // Sembunyikan pesan setelah semua pesan ditampilkan
+                setTimeout(() => {
+                    document.getElementById("message").innerText = ""; // Sembunyikan pesan
+                    document.getElementById("inputSection").style.display = 'block'; // Tampilkan input harapan
+                }, 1000); // Tunggu 1 detik sebelum menyembunyikan pesan
+            }
+        }
+
+        // Change message every 3 seconds
+        const messageInterval = setInterval(changeMessage, 3000);
+
+        // Display the first message immediately
+        changeMessage();
+
+        // Handle wish submission
+        document.getElementById("submitWish").addEventListener("click", function() {
+            const userWish = document.getElementById("userWish").value;
+            if (userWish) {
+                // Kirim harapan ke database (gunakan AJAX untuk menghubungkan ke server)
+                fetch('submit_wish.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ wish: userWish })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                    document.getElementById("inputSection").style.display = 'none'; // Sembunyikan input
+                    document.getElementById("thankYouSection").style.display = 'block'; // Tampilkan pertanyaan terima kasih
+                })
+                .catch(error => console.error('Error:', error));
+            } else {
+                alert("Harapan tidak boleh kosong!");
+            }
+        });
+
+        // Handle yes/no buttons
+        document.getElementById("yesButton").addEventListener("click", function() {
+            const message = encodeURIComponent("Thank You, YeQiu :D");
+            const phoneNumber = "62881036466459"; // Ganti dengan nomor WhatsApp Anda
+            window.location.href = `https://wa.me/${phoneNumber}?text=${message}`; // Tautan ke nomor WhatsApp dengan pesan
+        });
+
+        document.getElementById("noButton").addEventListener("click", function() {
+            document.getElementById("thankYouSection").style.display = 'none'; // Sembunyikan pertanyaan
+            document.getElementById("sadImage").style.display = 'block'; // Tampilkan gambar sedih
+            document.getElementById("sadText").style.display = 'block'; // Tampilkan teks
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Special For Angelia Suzan</title>
+    <link rel="icon" href="assets/xmas.png">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background-image: url('assets/hitam.jpg'); /* Latar belakang hitam */
+            background-size: cover; /* Menutupi seluruh layar */
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            text-align: center;
+            overflow: hidden; /* Sembunyikan overflow untuk efek salju */
+            transition: background-color 0.5s, background-image 0.5s; /* Transisi untuk perubahan latar belakang */
+        }
+        #loveButton {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+        }
+        #loveImage {
+            width: 150px; /* Atur ukuran gambar sesuai kebutuhan */
+            height: auto;
+        }
+        #welcomeMessage {
+            display: none; /* Sembunyikan pesan awalnya */
+            font-size: 32px; /* Ukuran font lebih besar */
+            margin-top: 200px; /* Tambahkan jarak atas jika diperlukan */
+        }
+        #name {
+            display: none; /* Sembunyikan nama awalnya */
+            font-size: 32px; /* Ukuran font untuk nama */
+            margin-top: 10px; /* Jarak atas untuk nama */
+        }
+        #clickButton {
+            display: none; /* Sembunyikan tombol klik awalnya */
+            padding: 15px 30px;
+            font-size: 20px;
+            background-color: #ff0000;
+            border: none;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            margin-top: 20px; /* Tambahkan jarak atas untuk tombol klik */
+        }
+        #clickButton:hover {
+            background-color: #cc0000;
+        }
+    </style>
+</head>
+<body>
+    <button id="loveButton">
+        <img id="loveImage" src="assets/love.gif" alt="Love" />
+    </button>
+    <div id="welcomeMessage">Welcome to Merry Christmas</div>
+    <div id="name">Suzan Mega Virginia Tjahjono</div> <!-- New name element -->
+    <button id="clickButton">Login</button>
+
+    <!-- Snowflake elements -->
+    <div class="snowflake"></div>
+    <div class="snowflake"></div>
+    <div class="snowflake"></div>
+    <div class="snowflake"></div>
+    <div class="snowflake"></div>
+    <div class="snowflake"></div>
+    <div class="snowflake"></div>
+    <div class="snowflake"></div>
+    <div class="snowflake"></div>
+    <div class="snowflake"></div>
+    <div class="snowflake"></div>
+    <div class="snowflake"></div>
+    <div class="snowflake"></div>
+    <div class="snowflake"></div>
+    <div class="snowflake"></div>
+    <div class="snowflake"></div>
+
+    <script>
+        document.getElementById('loveButton').addEventListener('click', function() {
+            // Sembunyikan tombol love
+            document.getElementById('loveButton').style.display = 'none';
+            // Ubah latar belakang menjadi gambar bg.jpg
+            document.body.style.backgroundImage = "url('assets/bg.jpg')"; // Ganti dengan path gambar latar belakang yang diinginkan
+            // Tampilkan pesan selamat datang
+            document.getElementById('welcomeMessage').style.display = 'block';
+            // Tampilkan nama
+            document.getElementById('name').style.display = 'block'; // Tampilkan nama
+            // Tampilkan tombol klik
+            document.getElementById('clickButton').style.display = 'block';
+        });
+
+        document.getElementById('clickButton').addEventListener('click', function() {
+            // Arahkan ke halaman index
+            window.location.href = 'index2.html'; // Ganti dengan nama file index Anda
+        });
+    </script>
+
+</body>
+</html>
